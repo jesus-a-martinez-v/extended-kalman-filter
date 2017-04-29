@@ -53,14 +53,6 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   double bearing = atan2(py, px);
   double range_rate = (px * vx + py * vy) / square_root_px2_plus_py2;
 
-  while (bearing > M_PI || bearing < -M_PI) {
-    if (bearing > M_PI) {
-      bearing -= 2 * M_PI;
-    } else {
-      bearing += 2 * M_PI;
-    }
-  }
-
   z_predicted << range,
                  bearing,
                  range_rate;
